@@ -19,11 +19,13 @@ def main():
                 pair='ETHUSD', interval='1m',
                 startTime=str(start_time), endTime=str(stop_time)
             )[0][1]
+            # считаем изменение цены
             procent = (abs(float(price_hour_ago) - float(price_now)))/float(price_hour_ago)
         except BinanceAPIException as error:
             print(error)
         else:
             if procent > 0.01:
+                # если изменения больше 1%, выводим сообщение
                 print('Подъем! Пора торговать!')
                 time.sleep(60)
             time.sleep(1)
